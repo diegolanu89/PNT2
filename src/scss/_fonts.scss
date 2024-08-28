@@ -1,0 +1,21 @@
+$fontFolder: '../fonts';
+
+@font-face {
+	font-family: 'TituSemiBold';
+	src: url('../fonts/TitilliumWeb-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'TituBold';
+	src: url('../fonts/TitilliumWeb-Bold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'TituRegular';
+	src: url('../fonts/TitilliumWeb-Regular.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'TituLight';
+	src: url('../fonts/TitilliumWeb-Light.ttf') format('truetype');
+}

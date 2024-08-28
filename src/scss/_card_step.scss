@@ -1,0 +1,58 @@
+#content-cardStep {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
+}
+
+#navs_cards {
+	width: 100%;
+	height: 15%;
+	position: absolute;
+	bottom: 0px;
+	z-index: $index_Main_Component;
+	display: flex;
+	flex-direction: row;
+	align-content: center;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: nowrap;
+
+	button {
+		width: 12rem;
+		margin: 1rem;
+		margin-left: 3rem;
+		margin-right: 3rem;
+		height: 4rem;
+		border: none;
+		border-radius: 10px;
+		font-size: 20px;
+		box-shadow: $shadow;
+		animation: blur 1s forwards;
+		background: $background;
+		color: $background;
+		box-shadow: $shadow;
+	}
+
+	button:nth-child(n) {
+		background: $redColor;
+	}
+	button:nth-child(n):active {
+		transition: 1.5s;
+		background: $background;
+		color: black;
+	}
+	button:nth-child(2n) {
+		background: $greenColor;
+	}
+
+	button:active {
+		box-shadow: $shadow_active;
+		transition: 0.5s;
+	}
+}

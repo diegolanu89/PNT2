@@ -1,0 +1,74 @@
+#accountContent {
+	position: absolute;
+	top: 15%;
+	width: 100%;
+	height: 65%;
+	display: flex;
+	padding: 16px;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+}
+
+#accountCardContent {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+#accountCard {
+	width: auto;
+	margin-left: 3rem;
+	min-width: 65%;
+	padding: 8px;
+	border-radius: 10px;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+	height: 4rem;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-content: center;
+	justify-content: center;
+	align-items: flex-start;
+	padding-top: 15px;
+	animation: slide_right 0.2s forwards;
+}
+
+#detailCard {
+	width: 25%;
+}
+
+#detailBalance {
+	width: 60%;
+}
+
+.accountCard_type {
+	width: 15%;
+	font-size: 5vh;
+	color: red;
+	font-family: 'TituBold';
+	border-right: 2px solid;
+	margin-right: 10px;
+	height: 100%;
+	text-align: center;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
+}
+
+.accountCard_number {
+}
+
+.accountCard_balance {
+	text-align: right;
+	color: grey;
+	font-size: 4vh;
+}
+
+.accountCard_nameType {
+}

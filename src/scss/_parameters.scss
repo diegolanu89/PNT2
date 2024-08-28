@@ -1,0 +1,36 @@
+/**PALET COLORS__________________________*/
+
+$bakImage: radial-gradient(circle, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 80%, rgba(190, 191, 191, 1) 100%);
+$colorBase: rgba(9, 9, 121, 1);
+$colorMiddleBar: rgba(0, 212, 255, 1);
+$colorBlack: rgba(2, 0, 36, 1);
+$background: white;
+$transitionCarrusel: 1.5s;
+$gradientBar: radial-gradient(circle, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 80%, rgba(190, 191, 191, 1) 100%);
+$redColor: red;
+$greenColor: green;
+$greyBar: rgba(128, 128, 128, 0.582);
+$greyColor: #676666;
+$greyTransparent: #6766665c;
+$blueShadowColor: rgb(9 9 121 / 29%);
+
+/**SHADOWS -----__________________________*/
+$shadow_back_left: linear-gradient(270deg, rgba(0, 0, 0, 0) 0%, rgba(112, 108, 131, 0.48783263305322133) 50%, rgba(0, 0, 0, 1) 100%);
+$shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+$shadow_active: rgba(0, 0, 0, 0.24) 0px 3px 2px;
+$shadowInset: inset 0px 0px 600px 50px #000000d4;
+
+/**INDEX POSITIONS________________________*/
+$index_Header: 3;
+$index_Header_Component: 4;
+$index_Main: 3;
+$index_Main_Component: 4;
+$index_Footer: 3;
+$index_Footer_Component: 4;
+$index_time: 5;
+$index_front_main: 50;
+$index_front_main_components: 51;
+$index_front_all: 100;
+
+/*FONT COLORS-----------------------------*/
+$ColorBackground: var(--ColorBackground);

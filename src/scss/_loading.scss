@@ -1,0 +1,61 @@
+#bar {
+	height: 15px;
+	border-radius: 5px 5px 5px 5px;
+	background: rgb(2, 0, 36);
+	background: linear-gradient(90deg, $colorBlack 0%, $colorBase 35%, $colorMiddleBar 100%);
+	box-shadow: $shadow;
+	animation: widthProgress 4s infinite forwards;
+}
+
+#content_bar {
+	height: 15px;
+	background-color: $greyBar;
+	width: 90%;
+	border-radius: 15px;
+}
+
+#bar_context {
+	width: 80%;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	align-content: center;
+	justify-content: flex-end;
+	height: 100%;
+}
+#bar_parameter {
+	height: 15px;
+	border-radius: 5px 5px 5px 5px;
+	background: rgb(2, 0, 36);
+	background: linear-gradient(90deg, $colorBlack 0%, $colorBase 35%, $colorMiddleBar 100%);
+	box-shadow: $shadow;
+	animation: var(--direction) var(--timeout) linear;
+}
+
+.bar-conteiner {
+	display: flex;
+	width: 50%;
+	height: 2rem;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-content: center;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 10px;
+}
+
+#loading {
+	background: $background;
+	background: $gradientBar;
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
+}
+
+.title_middle {
+	animation: opacity 1.7s forwards;
+	font-size: 30px;
+}

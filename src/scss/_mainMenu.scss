@@ -1,0 +1,372 @@
+body {
+	margin: 0;
+	font-family: TituRegular;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+body,
+body:focus {
+	outline: none;
+	cursor: none;
+	-webkit-user-select: none;
+}
+
+.contentAtm {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+#app {
+	position: absolute;
+	background: $ColorBackground;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+#MainMenu {
+	padding: 15px;
+}
+
+#card {
+	width: 18rem;
+	height: 21rem;
+	box-shadow: $shadow;
+	border-radius: 10px;
+	animation: blur 0.5s forwards;
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
+	.title {
+		padding: 1rem;
+		text-align: center;
+		margin: 0px;
+	}
+}
+
+#card:active,
+#chip:active {
+	transition: 0.5s;
+	box-shadow: $shadow_active;
+	color: rgba(255, 0, 0, 0.582);
+}
+svg:active {
+	transition: 0.5s;
+	fill: red;
+}
+
+#options {
+	border: 1px solid red;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: center;
+	align-items: center;
+	justify-content: space-around;
+	height: 35rem;
+}
+
+#dashboard_development {
+	z-index: $index_front_all;
+	position: absolute;
+	z-index: 100;
+	height: auto;
+	width: 262px;
+	top: 0px;
+	left: 0px;
+	padding: 0px;
+	margin-left: 1rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	align-content: flex-start;
+	flex-wrap: nowrap;
+	font-size: 0.8rem;
+
+	div {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		align-content: center;
+		justify-content: flex-start;
+		align-items: center;
+		padding: 0px;
+		margin: 0px;
+	}
+}
+
+#dashboard_development > p {
+	margin: 0;
+}
+
+header {
+	position: absolute;
+	width: 100%;
+	top: 0px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
+	height: 15%;
+	z-index: $index_Header;
+
+	.titleHeader {
+		position: absolute;
+		width: 70%;
+		left: 0px;
+		font-size: 35px;
+		animation: slide_right 0.2s forwards;
+		font-family: TituBold;
+		width: 70%;
+		display: flex;
+		justify-content: center;
+	}
+
+	#content_options_header {
+		position: absolute;
+		right: 0px;
+		width: 30%;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		align-content: center;
+		justify-content: flex-start;
+		align-items: center;
+	}
+
+	.close_boton {
+		border: none;
+		background: transparent;
+		border-radius: 10px;
+		font-size: 4vh;
+		font-family: 'TituBold';
+		color: red;
+		padding: 20px;
+		width: auto;
+		padding-bottom: 15px;
+		padding-top: 15px;
+		min-width: 6rem;
+		right: 15px;
+		animation: opacity 2s forwards;
+	}
+	.close_boton:active {
+		transition: 0.5s;
+		color: white;
+		text-shadow: 1px 2px black;
+	}
+}
+
+footer {
+	width: 100%;
+	height: 15%;
+	position: absolute;
+	bottom: 0px;
+	z-index: $index_Footer;
+
+	#navigates {
+		display: flex;
+		flex-direction: row;
+		align-content: center;
+		justify-content: space-between;
+		align-items: center;
+		flex-wrap: nowrap;
+
+		button {
+			width: 12rem;
+			margin: 1rem;
+			margin-left: 3rem;
+			margin-right: 3rem;
+			height: 4rem;
+			border: none;
+			border-radius: 10px;
+			font-size: 20px;
+			box-shadow: $shadow;
+			animation: blur 1s forwards;
+			background: $background;
+			color: $background;
+			box-shadow: $shadow;
+		}
+
+		button:nth-child(n) {
+			background: $redColor;
+		}
+		button:nth-child(n):active {
+			transition: 1.5s;
+			background: $background;
+			color: black;
+		}
+		button:nth-child(2n) {
+			background: $greenColor;
+		}
+
+		button:active {
+			box-shadow: $shadow_active;
+			transition: 0.5s;
+		}
+	}
+}
+
+#content-cardStep {
+	#chip-content {
+		margin-top: 3rem;
+		width: 91%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	#chip {
+		box-shadow: $shadow;
+		padding-top: 0.5rem;
+		padding-bottom: 0.5rem;
+		width: 18rem;
+		height: 3rem;
+		text-align: center;
+		border-radius: 10px;
+		font-size: 20px;
+		/* margin-left: 3rem; */
+		/* margin-right: 3rem; */
+		animation: blur 0.5s forwards;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		align-content: center;
+		justify-content: center;
+		align-items: center;
+
+		p {
+			margin-left: 15px;
+		}
+	}
+}
+
+main {
+	position: absolute;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
+	height: 70%;
+	font-size: 35px;
+	top: 15%;
+
+	.card-content {
+		margin-bottom: 2rem;
+		width: 91%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	#chip-content {
+		margin-top: 3rem;
+		width: 91%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.chip-content-input {
+		height: 100%;
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-end;
+		z-index: $index_Main;
+		float: bottom;
+		padding-bottom: 3rem;
+	}
+
+	#chip {
+		box-shadow: $shadow;
+		padding-top: 0.5rem;
+		padding-bottom: 0.5rem;
+		width: 18rem;
+		height: 3rem;
+		text-align: center;
+		border-radius: 10px;
+		font-size: 20px;
+		/* margin-left: 3rem; */
+		/* margin-right: 3rem; */
+		animation: blur 0.5s forwards;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		align-content: center;
+		justify-content: center;
+		align-items: center;
+
+		p {
+			margin-left: 15px;
+		}
+	}
+
+	#chipInput {
+		padding-top: 0.5rem;
+		padding-bottom: 0.5rem;
+		width: 16rem;
+		height: 2rem;
+		text-align: center;
+		border-radius: 10px;
+		font-size: 20px;
+		margin-left: 3rem;
+		margin-right: 3rem;
+		animation: blur 0.5s forwards;
+		box-shadow: $shadow;
+	}
+}
+
+#welcome {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
+}
+
+.chip-content-input {
+	position: absolute;
+	/* border: 1px solid; */
+	/* left: 0px; */
+	top: 72%;
+	/* height: 100%; */
+	width: 100%;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	z-index: $index_Main_Component;
+	float: bottom;
+	/* padding-bottom: 3rem; */
+	align-content: center;
+	flex-wrap: nowrap;
+	flex-direction: row;
+}
+
+#chipInput {
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	width: 10rem;
+	height: 3rem;
+	text-align: center;
+	border-radius: 35px;
+	border: 1px solid $greyTransparent;
+	font-size: 27px;
+	animation: blur 0.5s forwards;
+	z-index: $index_Main;
+}
