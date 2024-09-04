@@ -1,4 +1,4 @@
 export const Ejercicio3 = () => {
-	return <div>AQUÏ COMIENZA TODO!!!!!</div>
+	return <div>AQUÍ VA EL EJERCICIO 3!!!!!</div>
 }
 export default Ejercicio3
