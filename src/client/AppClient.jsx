@@ -2,6 +2,7 @@ import '../css/appClient.css'
 import Ejercicio1 from './views/Ejercicio1.Screen'
 import Ejercicio2 from './views/Ejercicio2.Screen'
 import Ejercicio3 from './views/Ejercicio3.Screen'
+import FetchExample from './views/FetchExample'
 import { useState } from 'react'
 //import { Start } from './views/Start.Screen'
 //import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
@@ -14,6 +15,7 @@ const AppClient = () => {
 		['Ejercicio1']: <Ejercicio1 />,
 		['Ejercicio2']: <Ejercicio2 />,
 		['Ejercicio3']: <Ejercicio3 />,
+		['Fetch']: <FetchExample />,
 	}
 
 	return (
@@ -48,6 +50,16 @@ const AppClient = () => {
 							}}
 						>
 							Ejercicio3
+						</a>
+					</li>
+					<li>
+						<a
+							href="#"
+							onClick={() => {
+								setEjercicio(options['Fetch'])
+							}}
+						>
+							Fetch
 						</a>
 					</li>
 				</ul>
