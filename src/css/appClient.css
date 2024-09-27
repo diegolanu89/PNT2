@@ -1,4 +1,4 @@
-#conteinerAlbum {
+#conteinerCard {
   border: 1px solid;
   display: flex;
   flex-direction: row;
@@ -9,7 +9,7 @@
 
 }
 
-.card {
+.Card {
 
   border: 1px solid;
   width: 200px;
