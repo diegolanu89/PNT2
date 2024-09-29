@@ -1,34 +1,47 @@
 import { useEffect, useState } from 'react'
-import ConteinerCard from './ConteinerCard'
-import Next from './Next'
-import Before from './Before'
+import ContenedorPokemones from './ContenedorPokemones'
+import { NavButton } from './NavButton'
+import Box from '@mui/material/Box'
+import Stack from '@mui/material/Stack'
 
 export const Home = () => {
+	const [url, setUrl] = useState('https://pokeapi.co/api/v2/pokemon?offset=6&limit=6')
 	const [pokemones, setPokemones] = useState([])
-	const [next, setNext] = useState(null)
-	const [before, setBefore] = useState(null)
-	const startUrl = 'https://pokeapi.co/api/v2/pokemon'
+	const [siguientesDisponibles, setSiguientes] = useState(null)
+	const [anterioresDisponibles, setAnteriores] = useState(null)
 
-	const handlerService = (url) => {
+	const controladorService = (url) => {
 		fetch(url).then((response) => {
 			response.json().then((data) => {
 				setPokemones(data.results)
-				setNext(data.next ? data.next : null)
-				setBefore(data.before ? data.before : null)
+				setSiguientes(data.next ? data.next : null)
+				setAnteriores(data.previous ? data.previous : null)
 			})
 		})
 	}
 
+	const siguientesControlador = () => {
+		setUrl(siguientesDisponibles)
+	}
+
+	const anterioresControlador = () => {
+		setUrl(anterioresDisponibles)
+	}
+
 	useEffect(() => {
-		handlerService(startUrl)
-	}, [])
+		controladorService(url)
+	}, [url])
 
 	return (
-		<div>
-			<ConteinerCard pokemones={pokemones} />
-			<Next next={next} handler={(e) => console.log(e)} />
-			<Before before={before} handler={(e) => console.log(e)} />
-		</div>
+		<Box sx={{ maxWidth: '1000px', padding: '16px' }}>
+			<ContenedorPokemones pokemones={pokemones} />
+			<Box sx={{ flexWrap: 'wrap', justifyContent: 'space-between' }}>
+				<Stack direction="row" spacing={100}>
+					<NavButton texto={'Anteriores'} controlador={anterioresControlador} disponible={anterioresDisponibles} />
+					<NavButton texto={'Siguientes'} controlador={siguientesControlador} disponible={siguientesDisponibles} />
+				</Stack>
+			</Box>
+		</Box>
 	)
 }
 
