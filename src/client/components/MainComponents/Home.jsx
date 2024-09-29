@@ -33,15 +33,17 @@ export const Home = () => {
 	}, [url])
 
 	return (
-		<Box sx={{ maxWidth: '1000px', padding: '16px' }}>
-			<ContenedorPokemones pokemones={pokemones} />
-			<Box sx={{ flexWrap: 'wrap', justifyContent: 'space-between' }}>
-				<Stack direction="row" spacing={100}>
-					<NavButton texto={'Anteriores'} controlador={anterioresControlador} disponible={anterioresDisponibles} />
-					<NavButton texto={'Siguientes'} controlador={siguientesControlador} disponible={siguientesDisponibles} />
-				</Stack>
+		<>
+			<Box sx={{ maxWidth: '1000px', padding: '16px' }}>
+				<ContenedorPokemones pokemones={pokemones} />
+				<Box sx={{ flexWrap: 'wrap', justifyContent: 'space-between' }}>
+					<Stack direction="row" sx={{ justifyContent: 'space-between' }}>
+						<NavButton texto={'Anteriores'} controlador={anterioresControlador} disponible={anterioresDisponibles} />
+						<NavButton texto={'Siguientes'} controlador={siguientesControlador} disponible={siguientesDisponibles} />
+					</Stack>
+				</Box>
 			</Box>
-		</Box>
+		</>
 	)
 }
 
