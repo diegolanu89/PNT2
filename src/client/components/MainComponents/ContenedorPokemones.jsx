@@ -5,7 +5,7 @@ import Card from '@mui/material/Card'
 
 export function ContenedorPokemones({ pokemones }) {
 	return (
-		<div id="contenedorPokemones">
+		<Box id="contenedorPokemones">
 			{pokemones?.map((pokemon, i) => (
 				<>
 					<Box key={pokemon + i} sx={{ minWidth: 275, boxShadow: 3, marginBottom: '16px' }}>
@@ -15,7 +15,7 @@ export function ContenedorPokemones({ pokemones }) {
 					</Box>
 				</>
 			))}
-		</div>
+		</Box>
 	)
 }
 

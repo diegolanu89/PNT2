@@ -6,7 +6,7 @@ import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
 import Chip from '@mui/material/Chip'
-
+import Box from '@mui/material/Box'
 const primeraLetraEnMayuscula = (str) => {
 	return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
 }
@@ -23,9 +23,9 @@ export const PokemonCard = ({ pokemon }) => {
 	}, [pokemon])
 
 	return (
-		<div className="pokemonCard">
+		<>
 			{details.length != 0 ? (
-				<>
+				<Box className="pokemonCard">
 					<CardContent>
 						<Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 14 }}>
 							{details.id}
@@ -40,9 +40,9 @@ export const PokemonCard = ({ pokemon }) => {
 					<CardActions>
 						<Chip color="primary" label="Detalles" onClick={() => {}} />
 					</CardActions>
-				</>
+				</Box>
 			) : null}
-		</div>
+		</>
 	)
 }
 PokemonCard.propTypes = {
