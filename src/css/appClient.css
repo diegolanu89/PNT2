@@ -1,3 +1,16 @@
+body {
+  background-color: grey;
+}
+
+#home {
+  display: flex;
+}
+
+#botoneraCard {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
 #contenedorPokemones {
   display: flex;
   flex-direction: row;

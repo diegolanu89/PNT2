@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
 import Chip from '@mui/material/Chip'
 import Box from '@mui/material/Box'
+
 const primeraLetraEnMayuscula = (str) => {
 	return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
 }
@@ -28,12 +29,16 @@ export const PokemonCard = ({ pokemon }) => {
 				<Box className="pokemonCard">
 					<CardContent>
 						<Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 14 }}>
-							{details.id}
+							<Typography variant="h3" gutterBottom>
+								{details.id}
+							</Typography>
 						</Typography>
-						<Typography variant="h5" component="div">
+						<Typography variant="h4" component="div">
 							{primeraLetraEnMayuscula(pokemon.name)}
 						</Typography>
-						<Typography sx={{ color: 'text.secondary', mb: 1.5 }}>{details.types[0].type.name}</Typography>
+						<Typography variant="h5" sx={{ color: 'text.secondary', mb: 1.5 }}>
+							{primeraLetraEnMayuscula(details.types[0].type.name)}
+						</Typography>
 						<img src={details.sprites.front_default} />
 						<Divider orientation="horizontal" flexItem />
 					</CardContent>

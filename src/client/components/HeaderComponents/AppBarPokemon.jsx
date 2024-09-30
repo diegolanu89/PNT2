@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
 import PropTypes from 'prop-types'
 
-export default function Header({ page }) {
+export default function AppBarPokemon({ page }) {
 	return (
 		<Box sx={{ flexGrow: 1 }}>
 			<AppBar position="static">
@@ -25,6 +25,6 @@ export default function Header({ page }) {
 	)
 }
 
-Header.propTypes = {
+AppBarPokemon.propTypes = {
 	page: PropTypes.string,
 }

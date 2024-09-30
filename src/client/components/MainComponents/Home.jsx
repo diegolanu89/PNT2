@@ -1,47 +1,47 @@
 import { useEffect, useState } from 'react'
 import ContenedorPokemones from './ContenedorPokemones'
-import { NavButton } from './NavButton'
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
+import Pagination from '@mui/material/Pagination'
+import Divider from '@mui/material/Divider'
+import PanelLateral from './PanelLateral'
 
 export const Home = () => {
-	const [url, setUrl] = useState('https://pokeapi.co/api/v2/pokemon?offset=6&limit=6')
+	const [pagina, setPagina] = useState('https://pokeapi.co/api/v2/pokemon?offset=0&limit=6')
 	const [pokemones, setPokemones] = useState([])
-	const [siguientesDisponibles, setSiguientes] = useState(null)
-	const [anterioresDisponibles, setAnteriores] = useState(null)
 
-	const controladorService = (url) => {
-		fetch(url).then((response) => {
+	const controladorService = (pagina) => {
+		fetch(pagina).then((response) => {
 			response.json().then((data) => {
 				setPokemones(data.results)
-				setSiguientes(data.next ? data.next : null)
-				setAnteriores(data.previous ? data.previous : null)
 			})
 		})
 	}
 
-	const siguientesControlador = () => {
-		setUrl(siguientesDisponibles)
-	}
-
-	const anterioresControlador = () => {
-		setUrl(anterioresDisponibles)
+	const paginador = (event, pagina) => {
+		setPagina(`https://pokeapi.co/api/v2/pokemon?offset=${pagina * 6 - 6}&limit=6`)
 	}
 
 	useEffect(() => {
-		controladorService(url)
-	}, [url])
+		controladorService(pagina)
+	}, [pagina])
 
 	return (
 		<>
-			<Box sx={{ maxWidth: '1000px', padding: '16px' }}>
-				<ContenedorPokemones pokemones={pokemones} />
-				<Box sx={{ flexWrap: 'wrap', justifyContent: 'space-between' }}>
-					<Stack direction="row" sx={{ justifyContent: 'space-between' }}>
-						<NavButton texto={'Anteriores'} controlador={anterioresControlador} disponible={anterioresDisponibles} />
-						<NavButton texto={'Siguientes'} controlador={siguientesControlador} disponible={siguientesDisponibles} />
-					</Stack>
-				</Box>
+			<Box id="home">
+				<Stack direction="row" sx={{ justifyContent: 'space-between' }}>
+					<Divider orientation="vertical" flexItem />
+					<PanelLateral />
+					<Box sx={{ maxWidth: '1000px', padding: '16px' }}>
+						<Divider orientation="horizontal" flexItem sx={{ marginBottom: '16px' }} />
+						<ContenedorPokemones pokemones={pokemones} sx={{ borderLine: '10px solid red', padding: '16px' }} />
+						<Box sx={{ flexWrap: 'wrap', justifyContent: 'space-between' }}>
+							<Stack direction="row" sx={{ justifyContent: 'space-between' }}>
+								<Pagination count={217} variant="outlined" onChange={paginador} />
+							</Stack>
+						</Box>
+					</Box>
+				</Stack>
 			</Box>
 		</>
 	)
