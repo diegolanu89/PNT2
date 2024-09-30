@@ -28,15 +28,13 @@ export const PokemonCard = ({ pokemon }) => {
 			{details.length != 0 ? (
 				<Box className="pokemonCard">
 					<CardContent>
-						<Typography gutterBottom sx={{ color: 'text.secondary', fontSize: 14 }}>
-							<Typography variant="h3" gutterBottom>
-								{details.id}
-							</Typography>
+						<Typography variant="h4" gutterBottom color="primary">
+							{details.id}
 						</Typography>
-						<Typography variant="h4" component="div">
+						<Typography variant="h5" component="div">
 							{primeraLetraEnMayuscula(pokemon.name)}
 						</Typography>
-						<Typography variant="h5" sx={{ color: 'text.secondary', mb: 1.5 }}>
+						<Typography variant="h6" sx={{ color: 'text.secondary', mb: 1.5 }}>
 							{primeraLetraEnMayuscula(details.types[0].type.name)}
 						</Typography>
 						<img src={details.sprites.front_default} />
