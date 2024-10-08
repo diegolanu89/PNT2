@@ -1,28 +1,29 @@
-import * as React from 'react'
+import { useState } from 'react'
 import ViewListIcon from '@mui/icons-material/ViewList'
 import ViewModuleIcon from '@mui/icons-material/ViewModule'
-import ViewQuiltIcon from '@mui/icons-material/ViewQuilt'
 import ToggleButton from '@mui/material/ToggleButton'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
-
-export default function BotoneraCard() {
-	const [view, setView] = React.useState('list')
+import PropTypes from 'prop-types'
+export default function BotoneraCard({ handler }) {
+	const [view, setView] = useState('list')
 
 	const handleChange = (event, nextView) => {
 		setView(nextView)
+		handler(nextView)
 	}
 
 	return (
 		<ToggleButtonGroup orientation="horizontal" value={view} exclusive onChange={handleChange} id="botoneraCard">
-			<ToggleButton value="list" aria-label="list">
+			<ToggleButton value="column" aria-label="column">
 				<ViewListIcon />
 			</ToggleButton>
-			<ToggleButton value="module" aria-label="module">
+			<ToggleButton value="row" aria-label="row">
 				<ViewModuleIcon />
-			</ToggleButton>
-			<ToggleButton value="quilt" aria-label="quilt">
-				<ViewQuiltIcon />
 			</ToggleButton>
 		</ToggleButtonGroup>
 	)
+}
+
+BotoneraCard.propTypes = {
+	handler: PropTypes.func,
 }

@@ -1,16 +1,22 @@
-import * as React from 'react'
+import { useEffect, useState } from 'react'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import Button from '@mui/material/Button'
+import { useConfig } from '../../contexts/Config.Context'
 
-export default function ControlledOpenSelect() {
-	const [tipo, setTipo] = React.useState('')
-	const [open, setOpen] = React.useState(false)
+export const tiposUrl = 'https://pokeapi.co/api/v2/type/'
+
+export default function Selector() {
+	const [tipo, setTipo] = useState('')
+	const [open, setOpen] = useState(false)
+	const [tiposPokemon, setTiposPokemon] = useState([])
+	const { setFiltros } = useConfig()
 
 	const handleChange = (event) => {
 		setTipo(event.target.value)
+		setFiltros(event.target.value)
 	}
 
 	const handleClose = () => {
@@ -20,6 +26,15 @@ export default function ControlledOpenSelect() {
 	const handleOpen = () => {
 		setOpen(true)
 	}
+
+	useEffect(() => {
+		fetch(tiposUrl).then((response) => {
+			response.json().then((data) => {
+				console.warn(data.results)
+				setTiposPokemon(data.results)
+			})
+		})
+	}, [])
 
 	return (
 		<div>
@@ -38,12 +53,11 @@ export default function ControlledOpenSelect() {
 					label="Age"
 					onChange={handleChange}
 				>
-					<MenuItem value="">
-						<em>Todos</em>
-					</MenuItem>
-					<MenuItem value={10}>Agua</MenuItem>
-					<MenuItem value={20}>Tierra</MenuItem>
-					<MenuItem value={30}>Fuego</MenuItem>
+					{tiposPokemon?.map((e, i) => (
+						<MenuItem key={e.name + i} value={e.name}>
+							<em>{e.name}</em>
+						</MenuItem>
+					))}
 				</Select>
 			</FormControl>
 		</div>
