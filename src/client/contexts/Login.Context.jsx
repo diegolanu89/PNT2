@@ -1,36 +1,74 @@
-import { createContext, useContext, useState } from 'react'
+/* eslint-disable react-refresh/only-export-components */
+import { createContext, useContext, useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
+import {
+	createUserWithEmailAndPassword,
+	signInWithEmailAndPassword,
+	signOut,
+	onAuthStateChanged,
+	GoogleAuthProvider,
+	signInWithPopup,
+	sendPasswordResetEmail,
+} from 'firebase/auth'
 
-export const LoginContext = createContext(null)
+import { auth } from '../controller/firebase'
 
-// eslint-disable-next-line react-refresh/only-export-components
+const authContext = createContext()
+
 export const useAuth = () => {
-	const context = useContext(LoginContext)
-	if (!context) throw new Error('ERROR ACCEDIENDO AL CONTEXT AUTH')
+	const context = useContext(authContext)
+	if (!context) throw new Error('There is no Auth provider')
 	return context
 }
 
-const LoginProvider = (children) => {
-	const [isLogin, setLogin] = useState(false)
-	const [userData, setUserData] = useState(null)
-	const [lenguage, setLenguage] = useState('SPANISH')
-	const [switchTranslate, setSwitch] = useState(false)
+export function AuthProvider({ children }) {
+	const [user, setUser] = useState(null)
+	const [loading, setLoading] = useState(true)
+
+	const signup = (email, password) => {
+		return createUserWithEmailAndPassword(auth, email, password)
+	}
+
+	const login = (email, password) => {
+		return signInWithEmailAndPassword(auth, email, password)
+	}
+
+	const loginWithGoogle = () => {
+		const googleProvider = new GoogleAuthProvider()
+		return signInWithPopup(auth, googleProvider)
+	}
+
+	const logout = () => signOut(auth)
+
+	const resetPassword = async (email) => sendPasswordResetEmail(auth, email)
+
+	useEffect(() => {
+		const unsubuscribe = onAuthStateChanged(auth, (currentUser) => {
+			setUser(currentUser)
+			setLoading(false)
+		})
+		return () => unsubuscribe()
+	}, [])
 
 	return (
-		<LoginContext.Provider
+		<authContext.Provider
 			value={{
-				isLogin,
-				userData,
-				setUserData,
-				setLogin,
-				lenguage,
-				setLenguage,
-				switchTranslate,
-				setSwitch,
+				signup,
+				login,
+				user,
+				logout,
+				loading,
+				loginWithGoogle,
+				resetPassword,
 			}}
 		>
 			{children}
-		</LoginContext.Provider>
+		</authContext.Provider>
 	)
 }
 
-export default LoginProvider
+AuthProvider.propTypes = {
+	children: PropTypes.node,
+}
+
+export default AuthProvider

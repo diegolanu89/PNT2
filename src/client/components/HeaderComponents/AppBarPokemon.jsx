@@ -5,9 +5,21 @@ import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
-import PropTypes from 'prop-types'
+import { useConfig } from '../../contexts/Config.Context'
+import { useAuth } from '../../contexts/Login.Context'
 
-export default function AppBarPokemon({ page }) {
+export default function AppBarPokemon() {
+	const { screen } = useConfig()
+	const { user, logout } = useAuth()
+
+	const handleLogout = async () => {
+		try {
+			await logout()
+		} catch (error) {
+			console.error(error.message)
+		}
+	}
+
 	return (
 		<Box sx={{ flexGrow: 1 }}>
 			<AppBar position="static">
@@ -16,15 +28,15 @@ export default function AppBarPokemon({ page }) {
 						<MenuIcon />
 					</IconButton>
 					<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-						{page}
+						{screen}
 					</Typography>
-					<Button color="inherit">Login</Button>
+					{user !== null ? (
+						<Button color="inherit" onClick={() => handleLogout()}>
+							Close Session
+						</Button>
+					) : null}
 				</Toolbar>
 			</AppBar>
 		</Box>
 	)
-}
-
-AppBarPokemon.propTypes = {
-	page: PropTypes.string,
 }

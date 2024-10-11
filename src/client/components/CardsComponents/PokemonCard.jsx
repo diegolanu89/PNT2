@@ -7,10 +7,7 @@ import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
 import Chip from '@mui/material/Chip'
 import Box from '@mui/material/Box'
-
-const primeraLetraEnMayuscula = (str) => {
-	return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
-}
+import { primeraLetraEnMayuscula } from '../../controller/Utils'
 
 export const PokemonCard = ({ pokemon }) => {
 	const [details, setDetails] = useState([])
