@@ -4,8 +4,9 @@ import ViewModuleIcon from '@mui/icons-material/ViewModule'
 import ToggleButton from '@mui/material/ToggleButton'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 import PropTypes from 'prop-types'
+import { DESIGN } from '../../controller/parameters'
 export default function BotoneraCard({ handler }) {
-	const [view, setView] = useState('list')
+	const [view, setView] = useState(DESIGN.LIST)
 
 	const handleChange = (event, nextView) => {
 		setView(nextView)

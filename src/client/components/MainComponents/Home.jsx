@@ -30,8 +30,8 @@ export const Home = () => {
 		<>
 			<Box id="home">
 				<Stack direction="row" sx={{ justifyContent: 'space-between' }}>
-					<Divider orientation="vertical" flexItem />
 					<PanelLateral />
+					<Divider orientation="vertical" flexItem />
 					<Box sx={{ maxWidth: '1000px', padding: '16px' }}>
 						<Divider orientation="horizontal" flexItem sx={{ marginBottom: '16px' }} />
 						<ContenedorPokemones pokemones={pokemones} sx={{ borderLine: '10px solid red', padding: '16px' }} />

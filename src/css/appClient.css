@@ -20,7 +20,6 @@ body {
 }
 
 .PokemonCard {
-
   border: 1px solid;
   width: 200px;
   height: 150px;
@@ -31,9 +30,260 @@ body {
   justify-content: center;
   align-items: center;
   margin: 1rem;
-
 }
 
 .MuiCard-root {
   border: 1px solid red;
 }
+
+@keyframes g {
+  0% {
+    background-color: #9887be;
+  }
+  50% {
+    background-color: #607e9e;
+  }
+  100% {
+    background-color: #534d61;
+  }
+}
+@keyframes g_inv {
+  0% {
+    background-color: rgba(161, 158, 170, 0.4784313725);
+  }
+  50% {
+    background-color: rgba(96, 126, 158, 0);
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
+@keyframes g_per {
+  0% {
+    color: greenyellow;
+  }
+  50% {
+    color: orange;
+  }
+  100% {
+    color: white;
+  }
+}
+@keyframes r {
+  from {
+    transform: rotate(0deg);
+  }
+  from {
+    transform: rotate(360deg);
+  }
+}
+@keyframes prog {
+  0% {
+    width: 0%;
+    background-color: blue;
+  }
+  50% {
+    width: 50%;
+    background-color: violet;
+  }
+  100% {
+    width: 100%;
+    background-color: white;
+  }
+}
+@keyframes pulse {
+  0% {
+    color: white;
+  }
+  100% {
+    color: rgba(255, 255, 255, 0);
+  }
+}
+@keyframes loading-bar-spinner {
+  0% {
+    transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.text_load {
+  color: white;
+  animation: pulse 2s linear;
+  animation-iteration-count: infinite;
+  font-size: 18px;
+  font-family: "Roboto";
+}
+
+#loading-bar-spinner.spinner {
+  /*left: 50%;
+       margin-left: -20px;
+       top: 50%;
+       margin-top: -20px;
+       position: absolute;*/
+  z-index: 19 !important;
+  animation: loading-bar-spinner 400ms linear infinite;
+}
+
+#loading-bar-spinner.spinner .spinner-icon {
+  width: 40px;
+  height: 40px;
+  border: solid 4px transparent;
+  border-top-color: #00c8b1 !important;
+  border-left-color: #00c8b1 !important;
+  border-radius: 50%;
+}
+
+.absolute_loading {
+  margin: 10px;
+  min-width: 200px;
+  max-width: 100%;
+  text-align: center;
+}
+
+#div_barra {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+#barra {
+  position: absolute;
+  left: 0;
+  width: 150px;
+  top: 0px;
+  height: 45px;
+  background-color: #5225bd;
+  border-radius: 10px;
+  animation: g 2500ms infinite ease-in-out;
+  z-index: 2;
+}
+
+#barra > div {
+  top: 25%;
+  left: 0px;
+  width: 75%;
+  display: block;
+  height: 50%;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background-color: white;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0px 0px 80px -30px rgb(255, 255, 255);
+}
+
+.progressbar-container {
+  margin-top: 10px;
+  position: relative;
+  width: 201px;
+  height: 30px;
+  /* border: 1px solid #FFF; */
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: 0.2s;
+  animation: g_inv 2500ms infinite ease-in-out;
+  /*box-shadow: inset 10px red;*/
+  box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+.progressbar-complete {
+  position: absolute;
+  left: 0;
+  top: 0px;
+  height: 100%;
+  background-color: #5225bd;
+  border-radius: 10px;
+  animation: g 2500ms infinite ease-in-out;
+  transition: 0.2s;
+  z-index: 2;
+}
+
+.progressbar-liquid {
+  z-index: 1;
+  width: 70px;
+  height: 70px;
+  animation: g 2500ms infinite ease-in-out, r 3000ms infinite cubic-bezier(0.5, 0.5, 0.5, 0.5);
+  transition: 0.2s;
+  position: absolute;
+  right: -5px;
+  top: -10px;
+  background-color: #5225bd;
+  border-radius: 40%;
+}
+
+.porcentaje {
+  animation: g_per 2500ms infinite ease-in-out;
+  z-index: 100;
+  transition: 0.2s;
+  font-family: "Facon";
+  font-size: 25px;
+  color: greenyellow;
+}
+
+#spinner_conteiner {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  height: auto;
+}
+
+.alert {
+  position: absolute;
+  width: 100%;
+  top: 25%;
+  min-height: 200px;
+  background: rgb(2, 0, 36);
+  background: radial-gradient(circle, rgb(2, 0, 36) 0%, rgba(255, 255, 255, 0.8799894958) 0%, rgba(7, 55, 65, 0.6110819328) 100%);
+  z-index: 100;
+  display: grid;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  font-family: Roboto;
+  font-size: 18px;
+  justify-items: center;
+  text-shadow: 0.1em 0.1em 0.2em black;
+}
+
+.alert_click {
+  border: none;
+  border-radius: 10px;
+  margin-top: 10px;
+  width: 100px;
+  height: 40px;
+  font-family: Roboto;
+  box-shadow: inset 0px 0px 3px 3px rgba(0, 0, 0, 0.384);
+}
+
+#alert_click:hover {
+  box-shadow: inset 0px 0px 3px 3px rgba(6, 165, 228, 0.384);
+  transition: 0.2s;
+  font-weight: bolder;
+}
+
+#alert_click:active {
+  border: 4px solid rgba(0, 0, 0, 0.164);
+  box-shadow: inset 0px 0px 5px 5px rgba(8, 211, 184, 0.432);
+  transition: 0.2s;
+}
+
+#alert_click:focus {
+  outline: none;
+}
+
+/*# sourceMappingURL=AppClient.css.map */

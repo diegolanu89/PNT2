@@ -30,7 +30,6 @@ export default function Selector() {
 	useEffect(() => {
 		fetch(tiposUrl).then((response) => {
 			response.json().then((data) => {
-				console.warn(data.results)
 				setTiposPokemon(data.results)
 			})
 		})
