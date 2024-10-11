@@ -6,6 +6,7 @@ simulator_old
 simulator.zip
 build
 .firebase
+.env.local
 
 # Logs
 logs
