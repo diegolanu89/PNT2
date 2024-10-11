@@ -2,8 +2,9 @@ import { initializeApp } from 'firebase/app'
 import { getFirestore } from 'firebase/firestore/lite'
 import { getAuth } from 'firebase/auth'
 
+const apiKey = import.meta.env.VITE_API_KEY
 const config = {
-	apiKey: '',
+	apiKey: apiKey,
 	authDomain: 'cvap-a4421.firebaseapp.com',
 	databaseURL: 'https://cvap-a4421.firebaseio.com',
 	projectId: 'cvap-a4421',
