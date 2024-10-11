@@ -45,7 +45,7 @@ export const Login = () => {
 					alignItems: 'center',
 				}}
 			>
-				<img src="src\images\pokemon_title.jpg" alt="MUI logo" style={{ height: 60 }} />
+				<img src="/pokemon_title.jpg" alt="logo" style={{ height: 60 }} />
 				<Typography component="h1" variant="h5">
 					{LABELS_LOGIN.LOGIN}
 				</Typography>

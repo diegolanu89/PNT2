@@ -53,7 +53,7 @@ export const Register = () => {
 					alignItems: 'center',
 				}}
 			>
-				<img src="src\images\pokemon_title.jpg" alt="MUI logo" style={{ height: 60 }} />
+				<img src="/pokemon_title.jpg" alt="logo" style={{ height: 60 }} />
 				{loading !== false ? <Loading text={loadingText} carga={true} nivel={loadingCharge}></Loading> : null}
 				<Typography component="h1" variant="h5">
 					{LABELS_REGISTER.REGISTER}
