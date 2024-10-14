@@ -1,7 +1,8 @@
 import '../css/appClient.css'
 import Box from '@mui/material/Box'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Home } from '../client/components/MainComponents/Home'
+import Pokedex from './components/MainComponents/PokeDex'
+import { Home } from './components/MainComponents/Home'
 import { ThemeProvider } from '@mui/material/styles'
 import { estiloPokemonDark } from './contexts/Estilo.Context'
 import AppBarPokemon from './components/HeaderComponents/AppBarPokemon'
@@ -13,15 +14,23 @@ import { Login } from './components/MainComponents/Login'
 import { Register } from './components/MainComponents/Register'
 import { Screen } from './components/MainComponents/Screen'
 import { PATHS, LABELS } from './controller/parameters'
+import { useDeviceType } from './hooks/useDeviceMui'
 
 const AppClient = () => {
+	const { isMobile, isTablet } = useDeviceType()
 	return (
 		<>
 			<AuthProvider>
 				<ConfigProvider>
 					<ThemeProvider theme={estiloPokemonDark}>
-						<Box sx={{ padding: '8px' }}>
-							<Paper elevation={1}>
+						<Box>
+							<Paper
+								elevation={1}
+								sx={{
+									margin: isMobile ? '0px' : isTablet ? '8px' : '16px',
+									minHeight: '100vh', // Asegura un mínimo de 100% del viewport, pero crece con el contenido
+								}}
+							>
 								<AppBarPokemon />
 								<BrowserRouter>
 									<Routes>
@@ -29,8 +38,18 @@ const AppClient = () => {
 											path={PATHS.HOME}
 											element={
 												<ProtectedRoute>
-													<Screen label={LABELS.LABEL_HOME}>
+													<Screen label={LABELS.HOME}>
 														<Home />
+													</Screen>
+												</ProtectedRoute>
+											}
+										></Route>
+										<Route
+											path={PATHS.POKEDEX}
+											element={
+												<ProtectedRoute>
+													<Screen label={LABELS.POKEDEX}>
+														<Pokedex />
 													</Screen>
 												</ProtectedRoute>
 											}
