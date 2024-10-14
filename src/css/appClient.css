@@ -1,4 +1,12 @@
-body {
+/* styles.css */
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
   background-color: grey;
 }
 
@@ -20,7 +28,6 @@ body {
 }
 
 .PokemonCard {
-  border: 1px solid;
   width: 200px;
   height: 150px;
   display: flex;
@@ -32,10 +39,17 @@ body {
   margin: 1rem;
 }
 
-.MuiCard-root {
-  border: 1px solid red;
+/*===============================MEDIA QUERYS============================================*/
+@media (max-width: 1024px) {
+  #container {
+    background-color: lightgreen;
+  }
 }
-
+@media (max-width: 768px) {
+  #container {
+    background-color: lightblue;
+  }
+}
 @keyframes g {
   0% {
     background-color: #9887be;
@@ -284,6 +298,74 @@ body {
 
 #alert_click:focus {
   outline: none;
+}
+
+:root {
+  --foreground-color: white;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/*
+body {
+	overflow: hidden;
+}
+
+main {
+	background: linear-gradient(322deg, #ba4aff, rgba(#ba4aff, 0) 70%), linear-gradient(178deg, #008aff, rgba(#008aff, 0) 70%),
+		linear-gradient(24deg, #00ffc6, rgba(#00ffc6, 0) 35%);
+}*/
+.ruler {
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.05);
+  position: absolute;
+  top: 50%;
+  height: 50%;
+  left: 0%;
+  right: 0%;
+}
+
+.containerGlass .brillo:active {
+  transition: 0.7s;
+  filter: brightness(1.25);
+}
+.containerGlass .brillo:hover {
+  transition: 0.7s;
+  filter: brightness(1.25);
+}
+.containerGlass .icon {
+  --size: 6rem;
+  --transition-duration: 500ms;
+  --transition-easing: ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--foreground-color);
+  font-size: 2rem;
+  box-shadow: 0px calc(var(--size) / 6) calc(var(--size) / 3) rgba(0, 0, 0, 0.1);
+  transition: transform var(--transition-duration) var(--transition-easing);
+}
+.containerGlass .icon::before {
+  content: "";
+  background: rgba(255, 255, 255, 0.4);
+  width: 60%;
+  height: 100%;
+  top: 0%;
+  left: -125%;
+  transform: skew(45deg);
+  position: absolute;
+  transition: left var(--transition-duration) var(--transition-easing);
+}
+.containerGlass .icon:hover {
+  transform: translateY(0%);
+}
+.containerGlass .icon:hover::before {
+  left: 150%;
 }
 
 /*# sourceMappingURL=AppClient.css.map */

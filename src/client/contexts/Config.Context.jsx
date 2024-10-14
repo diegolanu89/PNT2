@@ -17,7 +17,9 @@ export const ConfigProvider = ({ children }) => {
 	const [screen, setScreen] = useState('')
 
 	const setFiltros = (e) => {
-		addFiltros(e)
+		let f = []
+		f.push(e)
+		addFiltros(f)
 	}
 
 	const cleanFiltro = (e) => {

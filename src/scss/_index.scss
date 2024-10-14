@@ -1,4 +1,12 @@
-body {
+/* styles.css */
+html,
+body,
+#root {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
 	background-color: grey;
 }
 
@@ -20,7 +28,6 @@ body {
 }
 
 .PokemonCard {
-	border: 1px solid;
 	width: 200px;
 	height: 150px;
 	display: flex;
@@ -32,6 +39,15 @@ body {
 	margin: 1rem;
 }
 
-.MuiCard-root {
-	border: 1px solid red;
+/*===============================MEDIA QUERYS============================================*/
+@media (max-width: 1024px) {
+	#container {
+		background-color: lightgreen;
+	}
+}
+
+@media (max-width: 768px) {
+	#container {
+		background-color: lightblue;
+	}
 }

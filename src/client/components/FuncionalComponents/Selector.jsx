@@ -36,7 +36,7 @@ export default function Selector() {
 	}, [])
 
 	return (
-		<div>
+		<>
 			<Button sx={{ display: 'block', mt: 2 }} onClick={handleOpen}>
 				Filtros
 			</Button>
@@ -49,7 +49,7 @@ export default function Selector() {
 					onClose={handleClose}
 					onOpen={handleOpen}
 					value={tipo}
-					label="Age"
+					label="tipo"
 					onChange={handleChange}
 				>
 					{tiposPokemon?.map((e, i) => (
@@ -59,6 +59,6 @@ export default function Selector() {
 					))}
 				</Select>
 			</FormControl>
-		</div>
+		</>
 	)
 }
