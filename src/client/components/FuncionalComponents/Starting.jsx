@@ -1,7 +1,9 @@
 export function Starting() {
 	return (
-		<div className="starting">
-			<div className="logotipo">Pokemon!!!</div>
+		<div className="startText">
+			<div className="logotipo">
+				<span>Pokemon</span>
+			</div>
 		</div>
 	)
 }

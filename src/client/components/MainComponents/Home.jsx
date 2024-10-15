@@ -11,7 +11,6 @@ export const Home = () => {
 		<>
 			<Box
 				sx={{
-					maxWidth: '1000px',
 					padding: '16px',
 					display: 'flex',
 					flexDirection: 'column',
