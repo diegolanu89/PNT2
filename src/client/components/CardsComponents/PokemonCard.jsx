@@ -12,11 +12,15 @@ import { useDeviceType } from '../../hooks/useDeviceMui'
 import { useWindowDimensions } from '../../hooks/useWindowDimensions'
 import { typeTextColors, typeColorsDarkMode, typeColors } from '../../controller/parameters'
 import GlassCard from './Glass'
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import IconButton from '@mui/material/IconButton'
+import { useConfig } from '../../contexts/Config.Context'
 
 export const PokemonCard = ({ pokemon }) => {
 	const [details, setDetails] = useState([])
 	const { isMobile } = useDeviceType()
 	const { width } = useWindowDimensions()
+	const { setFavoritos } = useConfig()
 
 	useEffect(() => {
 		fetch(pokemon.url).then((response) => {
@@ -39,6 +43,19 @@ export const PokemonCard = ({ pokemon }) => {
 						}}
 					>
 						<CardContent>
+							<div id="favorito">
+								<IconButton
+									size="large"
+									edge="start"
+									color="inherit"
+									aria-label="menu"
+									sx={{ mr: 2, justifyContent: 'flex-end' }}
+									onClick={() => setFavoritos(details)}
+								>
+									<FavoriteIcon />
+								</IconButton>
+							</div>
+
 							<Typography variant="h4" gutterBottom sx={{ color: typeTextColors[details.types[0].type.name] }}>
 								{details.id}
 							</Typography>

@@ -39,6 +39,11 @@ body,
 	margin: 1rem;
 }
 
+#favorito {
+	display: flex;
+	justify-content: flex-end;
+}
+
 /*===============================MEDIA QUERYS============================================*/
 @media (max-width: 1024px) {
 }

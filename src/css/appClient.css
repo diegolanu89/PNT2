@@ -47,6 +47,11 @@ body,
   margin: 1rem;
 }
 
+#favorito {
+  display: flex;
+  justify-content: flex-end;
+}
+
 /*===============================MEDIA QUERYS============================================*/
 @keyframes g {
   0% {
