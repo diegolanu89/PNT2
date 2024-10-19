@@ -12,6 +12,7 @@ export const PATHS = {
 	INFO: '/info',
 	LOGIN: '/login',
 	REGISTER: '/register',
+	POESEARCH: '/pokesearch',
 }
 
 export const DESIGN = {
