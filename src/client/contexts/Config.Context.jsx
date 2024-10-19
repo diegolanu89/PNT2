@@ -15,6 +15,7 @@ export const useConfig = () => {
 export const ConfigProvider = ({ children }) => {
 	const [filtros, addFiltros] = useState([])
 	const [screen, setScreen] = useState('')
+	const [favoritos, addFavorito] = useState([])
 
 	const setFiltros = (e) => {
 		let f = []
@@ -26,6 +27,13 @@ export const ConfigProvider = ({ children }) => {
 		addFiltros(e)
 	}
 
+	const setFavoritos = (e) => {
+		let fav = favoritos
+		fav.push(e)
+		addFavorito(fav)
+		console.log(favoritos)
+	}
+
 	return (
 		<ConfigContext.Provider
 			value={{
@@ -34,6 +42,8 @@ export const ConfigProvider = ({ children }) => {
 				cleanFiltro,
 				screen,
 				setScreen,
+				setFavoritos,
+				favoritos,
 			}}
 		>
 			{children}
