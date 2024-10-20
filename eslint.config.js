@@ -5,19 +5,20 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 
 export default [
-	{ ignores: ['dist'] },
+	{
+		ignores: ['dist'],
+	},
 	{
 		files: ['**/*.{js,jsx}'],
 		languageOptions: {
-			ecmaVersion: 2020,
+			ecmaVersion: 'latest', // Aquí usas la versión más reciente
 			globals: globals.browser,
 			parserOptions: {
-				ecmaVersion: 'latest',
 				ecmaFeatures: { jsx: true },
 				sourceType: 'module',
 			},
 		},
-		settings: { react: { version: '18.3' } },
+		settings: { react: { version: 'detect' } }, // Usar 'detect' para que ESLint lo detecte automáticamente
 		plugins: {
 			react,
 			'react-hooks': reactHooks,

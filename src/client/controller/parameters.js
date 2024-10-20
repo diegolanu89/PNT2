@@ -4,6 +4,7 @@ export const LABELS = {
 	POKEDEX: 'PokeDex',
 	LABEL_LOGIN: 'Iniciar sesión',
 	LABEL_REGISTER: 'Registrarse',
+	POKESEARCH: 'Busca tu pokemon',
 }
 
 export const PATHS = {
@@ -12,7 +13,7 @@ export const PATHS = {
 	INFO: '/info',
 	LOGIN: '/login',
 	REGISTER: '/register',
-	POESEARCH: '/pokesearch',
+	POKESEARCH: '/pokesearch',
 }
 
 export const DESIGN = {

@@ -3,7 +3,7 @@ import * as React from 'react'
 import { useContext, useState } from 'react'
 import PropTypes from 'prop-types'
 
-const ERROR_ACCCES_CONFIG = 'ERROR ACCEDIENDO AL CONTEXT Config'
+const ERROR_ACCCES_CONFIG = 'ERROR ACCEDIENDO AL CONTEXT CONFIG'
 export const ConfigContext = React.createContext(null)
 
 export const useConfig = () => {
@@ -13,19 +13,11 @@ export const useConfig = () => {
 }
 
 export const ConfigProvider = ({ children }) => {
-	const [filtros, addFiltros] = useState([])
+	const [filtroTipo, setFiltroTipo] = useState('')
+	const [searchTerm, setSearchTerm] = useState('')
+	const [habilidad, setHabilidad] = useState('')
 	const [screen, setScreen] = useState('')
 	const [favoritos, addFavorito] = useState([])
-
-	const setFiltros = (e) => {
-		let f = []
-		f.push(e)
-		addFiltros(f)
-	}
-
-	const cleanFiltro = (e) => {
-		addFiltros(e)
-	}
 
 	const setFavoritos = (e) => {
 		let fav = favoritos
@@ -34,12 +26,23 @@ export const ConfigProvider = ({ children }) => {
 		console.log(favoritos)
 	}
 
+	// Función para limpiar los filtros
+	const limpiarFiltros = () => {
+		setFiltroTipo('')
+		setSearchTerm('')
+		setHabilidad('')
+	}
+
 	return (
 		<ConfigContext.Provider
 			value={{
-				filtros,
-				setFiltros,
-				cleanFiltro,
+				limpiarFiltros,
+				habilidad,
+				setHabilidad,
+				filtroTipo,
+				setFiltroTipo,
+				searchTerm,
+				setSearchTerm,
 				screen,
 				setScreen,
 				setFavoritos,
