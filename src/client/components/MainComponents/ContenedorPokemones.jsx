@@ -12,7 +12,7 @@ export function ContenedorPokemones({ pokemones }) {
 	const [disposicion, setDisposicion] = useState(DESIGN.ROW)
 
 	return (
-		<Box id="contenedorPokemones" sx={{ flexDirection: disposicion, justifyContent: isMobile ? 'center' : 'space-between' }}>
+		<Box id="contenedorPokemones" sx={{ flexDirection: disposicion, justifyContent: isMobile ? 'center' : 'flex-start' }}>
 			{!isMobile ? <BotoneraCard handler={setDisposicion} /> : null}
 
 			{pokemones?.map((pokemon, i) => (

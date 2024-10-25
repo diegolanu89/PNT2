@@ -1,4 +1,5 @@
-import { TextField } from '@mui/material'
+import { TextField, InputAdornment } from '@mui/material'
+import SearchIcon from '@mui/icons-material/Search' // Un ícono de búsqueda para el adornment
 import { useConfig } from '../../contexts/Config.Context'
 
 const SearchBar = () => {
@@ -17,6 +18,13 @@ const SearchBar = () => {
 			value={searchTerm} // Usar el valor del contexto
 			onChange={handleSearchChange} // Actualizar el valor en el contexto
 			sx={{ mb: 2 }}
+			InputProps={{
+				startAdornment: (
+					<InputAdornment position="start">
+						<SearchIcon /> {/* Ícono de búsqueda */}
+					</InputAdornment>
+				),
+			}}
 		/>
 	)
 }

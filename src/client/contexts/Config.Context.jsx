@@ -19,6 +19,11 @@ export const ConfigProvider = ({ children }) => {
 	const [screen, setScreen] = useState('')
 	const [favoritos, addFavorito] = useState([])
 
+	//STATS
+	const [rangoAtaque, setRangoAtaque] = useState([0, 250])
+	const [rangoDefensa, setRangoDefensa] = useState([0, 250])
+	const [rangoVelocidad, setRangoVelocidad] = useState([0, 250])
+
 	const setFavoritos = (e) => {
 		let fav = favoritos
 		fav.push(e)
@@ -31,6 +36,9 @@ export const ConfigProvider = ({ children }) => {
 		setFiltroTipo('')
 		setSearchTerm('')
 		setHabilidad('')
+		setRangoAtaque([0, 250])
+		setRangoDefensa([0, 250])
+		setRangoVelocidad([0, 250])
 	}
 
 	return (
@@ -47,6 +55,12 @@ export const ConfigProvider = ({ children }) => {
 				setScreen,
 				setFavoritos,
 				favoritos,
+				rangoAtaque,
+				rangoDefensa,
+				rangoVelocidad,
+				setRangoAtaque,
+				setRangoDefensa,
+				setRangoVelocidad,
 			}}
 		>
 			{children}
