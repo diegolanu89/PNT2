@@ -11,6 +11,7 @@ import SelectorHabilidad from '../FuncionalComponents/SelectorHabilidad'
 import FiltroBoton from '../FuncionalComponents/FiltroBoton'
 import { FiltroEstadisticas } from '../FuncionalComponents/FiltroEstadisticas'
 import { Button, Typography } from '@mui/material'
+import SelectorGeneracion from '../FuncionalComponents/SelectorGeneracion'
 
 // Estilos del modal
 const modalStyle = {
@@ -66,6 +67,7 @@ export const PanelLateral = () => {
 								<SearchBar />
 								<SelectorTipo />
 								<SelectorHabilidad />
+								<SelectorGeneracion />
 								<FiltroEstadisticas />
 								<FiltroBoton />
 								{/* Botón de "Ir" para cerrar el modal */}
@@ -98,6 +100,7 @@ export const PanelLateral = () => {
 					</Typography>
 					<SelectorTipo />
 					<SelectorHabilidad />
+					<SelectorGeneracion />
 					<FiltroEstadisticas />
 					<FiltroBoton />
 				</Box>

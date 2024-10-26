@@ -18,6 +18,7 @@ export const ConfigProvider = ({ children }) => {
 	const [habilidad, setHabilidad] = useState('')
 	const [screen, setScreen] = useState('')
 	const [favoritos, addFavorito] = useState([])
+	const [generacion, setGeneracion] = useState('')
 
 	//STATS
 	const [rangoAtaque, setRangoAtaque] = useState([0, 250])
@@ -44,6 +45,8 @@ export const ConfigProvider = ({ children }) => {
 	return (
 		<ConfigContext.Provider
 			value={{
+				generacion,
+				setGeneracion,
 				limpiarFiltros,
 				habilidad,
 				setHabilidad,
