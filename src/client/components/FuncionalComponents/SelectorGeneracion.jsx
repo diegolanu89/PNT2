@@ -8,7 +8,7 @@ const SelectorGeneracion = () => {
 	}
 
 	return (
-		<FormControl fullWidth>
+		<FormControl fullWidth sx={{ mb: 2 }}>
 			<InputLabel>Generación</InputLabel>
 			<Select value={generacion} onChange={handleChange}>
 				<MenuItem value={''}>Todas</MenuItem>

@@ -9,7 +9,7 @@ export const PokeDex = () => {
 	const { isMobile } = useDeviceType()
 	const limit = isMobile ? 6 : 10
 	const { pokemones, totalPokemones, loading } = useFetchFiltradosPokemones()
-	const { pagina, paginador, pokemonesAMostrar } = usePaginacion(totalPokemones, limit)
+	const { pagina, paginador, pokemonesAMostrar } = usePaginacion(limit, loading)
 
 	return (
 		<Box>

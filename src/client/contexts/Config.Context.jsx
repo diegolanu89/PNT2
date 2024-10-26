@@ -19,17 +19,26 @@ export const ConfigProvider = ({ children }) => {
 	const [screen, setScreen] = useState('')
 	const [favoritos, addFavorito] = useState([])
 	const [generacion, setGeneracion] = useState('')
+	const [initFiltros, setFiltros] = useState(false)
+	const [color, setColor] = useState('Todos')
+	const [evoluciones, setEvoluciones] = useState('Todos')
 
 	//STATS
 	const [rangoAtaque, setRangoAtaque] = useState([0, 250])
 	const [rangoDefensa, setRangoDefensa] = useState([0, 250])
 	const [rangoVelocidad, setRangoVelocidad] = useState([0, 250])
+	const [rangoPeso, setRangoPeso] = useState([1, 1000])
+	const [rangoAltura, setRangoAltura] = useState([1, 20])
 
 	const setFavoritos = (e) => {
 		let fav = favoritos
 		fav.push(e)
 		addFavorito(fav)
 		console.log(favoritos)
+	}
+
+	const aplicarFiltros = () => {
+		setFiltros(!initFiltros)
 	}
 
 	// Función para limpiar los filtros
@@ -40,6 +49,7 @@ export const ConfigProvider = ({ children }) => {
 		setRangoAtaque([0, 250])
 		setRangoDefensa([0, 250])
 		setRangoVelocidad([0, 250])
+		setGeneracion('')
 	}
 
 	return (
@@ -64,6 +74,16 @@ export const ConfigProvider = ({ children }) => {
 				setRangoAtaque,
 				setRangoDefensa,
 				setRangoVelocidad,
+				aplicarFiltros,
+				initFiltros,
+				color,
+				setColor,
+				rangoPeso,
+				setRangoPeso,
+				rangoAltura,
+				setRangoAltura,
+				evoluciones,
+				setEvoluciones,
 			}}
 		>
 			{children}

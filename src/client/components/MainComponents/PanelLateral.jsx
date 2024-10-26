@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Box from '@mui/material/Box'
 import Modal from '@mui/material/Modal'
 import Fab from '@mui/material/Fab'
@@ -12,6 +12,9 @@ import FiltroBoton from '../FuncionalComponents/FiltroBoton'
 import { FiltroEstadisticas } from '../FuncionalComponents/FiltroEstadisticas'
 import { Button, Typography } from '@mui/material'
 import SelectorGeneracion from '../FuncionalComponents/SelectorGeneracion'
+import { useConfig } from '../../contexts/Config.Context'
+import SelectorColor from '../FuncionalComponents/SelectorColor'
+import SelectorEvoluciones from '../FuncionalComponents/SelectorEvoluciones'
 
 // Estilos del modal
 const modalStyle = {
@@ -30,9 +33,14 @@ const modalStyle = {
 export const PanelLateral = () => {
 	const { isMobile } = useDeviceType() // Para verificar si es dispositivo móvil
 	const [open, setOpen] = useState(false) // Estado del modal
+	const { initFiltros } = useConfig()
 
 	const handleOpen = () => setOpen(true) // Función para abrir el modal
 	const handleClose = () => setOpen(false) // Función para cerrar el modal
+
+	useEffect(() => {
+		setOpen(!open)
+	}, [initFiltros])
 
 	return (
 		<>
@@ -68,6 +76,8 @@ export const PanelLateral = () => {
 								<SelectorTipo />
 								<SelectorHabilidad />
 								<SelectorGeneracion />
+								<SelectorColor />
+								<SelectorEvoluciones />
 								<FiltroEstadisticas />
 								<FiltroBoton />
 								{/* Botón de "Ir" para cerrar el modal */}
@@ -101,6 +111,8 @@ export const PanelLateral = () => {
 					<SelectorTipo />
 					<SelectorHabilidad />
 					<SelectorGeneracion />
+					<SelectorColor />
+					<SelectorEvoluciones />
 					<FiltroEstadisticas />
 					<FiltroBoton />
 				</Box>

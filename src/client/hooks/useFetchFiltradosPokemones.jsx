@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect, useCallback } from 'react'
 import { useConfig } from '../contexts/Config.Context'
 import { useDebounce } from '../hooks/useDebounce'
@@ -15,14 +14,14 @@ const pokemonCache = {}
 
 // Definir los rangos de ID para cada generación
 const GENERATION_RANGES = {
-	1: [1, 151], // Generación 1: del 1 al 151
-	2: [152, 251], // Generación 2: del 152 al 251
-	3: [252, 386], // Generación 3: del 252 al 386
-	4: [387, 493], // Generación 4: del 387 al 493
-	5: [494, 649], // Generación 5: del 494 al 649
-	6: [650, 721], // Generación 6: del 650 al 721
-	7: [722, 809], // Generación 7: del 722 al 809
-	8: [810, 898], // Generación 8: del 810 al 898
+	1: [1, 151],
+	2: [152, 251],
+	3: [252, 386],
+	4: [387, 493],
+	5: [494, 649],
+	6: [650, 721],
+	7: [722, 809],
+	8: [810, 898],
 }
 
 // Verificar si el cache cumple con el tiempo de vida establecido
@@ -32,11 +31,13 @@ const isCacheValid = (cacheTimestamp) => {
 }
 
 // Función para filtrar Pokémon por estadísticas
-const filtrarPorEstadisticas = (pokemones, rangoAtaque, rangoDefensa, rangoVelocidad) => {
+const filtrarPorEstadisticas = (pokemones, rangoAtaque, rangoDefensa, rangoVelocidad, rangoPeso, rangoAltura) => {
 	return pokemones.filter((poke) => {
 		const ataque = poke.stats.find((stat) => stat.stat.name === 'attack').base_stat
 		const defensa = poke.stats.find((stat) => stat.stat.name === 'defense').base_stat
 		const velocidad = poke.stats.find((stat) => stat.stat.name === 'speed').base_stat
+		const peso = poke.weight / 10 // El peso está en decímetros
+		const altura = poke.height / 10 // La altura está en decímetros
 
 		return (
 			ataque >= rangoAtaque[0] &&
@@ -44,7 +45,11 @@ const filtrarPorEstadisticas = (pokemones, rangoAtaque, rangoDefensa, rangoVeloc
 			defensa >= rangoDefensa[0] &&
 			defensa <= rangoDefensa[1] &&
 			velocidad >= rangoVelocidad[0] &&
-			velocidad <= rangoVelocidad[1]
+			velocidad <= rangoVelocidad[1] &&
+			peso >= rangoPeso[0] &&
+			peso <= rangoPeso[1] &&
+			altura >= rangoAltura[0] &&
+			altura <= rangoAltura[1]
 		)
 	})
 }
@@ -61,13 +66,80 @@ const filtrarPorGeneracion = (pokemones, generacion) => {
 	})
 }
 
+// Función para filtrar Pokémon por tipo
+const filtrarPorTipo = (pokemones, tipo) => {
+	return pokemones.filter((poke) => {
+		return poke.types.some((pokeType) => pokeType.type.name === tipo)
+	})
+}
+
+// Función para filtrar Pokémon por color
+const filtrarPorColor = async (pokemones, color) => {
+	if (!color || color === 'Todos') return pokemones // Si no se selecciona un color, devolver todos
+
+	try {
+		const response = await fetch(`https://pokeapi.co/api/v2/pokemon-color/${color}`)
+		if (!response.ok) {
+			throw new Error('Error al obtener Pokémon por color')
+		}
+		const data = await response.json()
+
+		const pokemonNamesByColor = data.pokemon_species.map((species) => species.name)
+
+		// Filtrar los Pokémon por el color seleccionado
+		return pokemones.filter((poke) => pokemonNamesByColor.includes(poke.name))
+	} catch (error) {
+		console.error('Error al obtener Pokémon por color:', error)
+		return pokemones // Si ocurre un error, no aplicar el filtro de color
+	}
+}
+
+// Función para filtrar Pokémon por evoluciones
+const filtrarPorEvoluciones = async (pokemones, evoluciones) => {
+	if (!evoluciones || evoluciones === 'Todos') return pokemones
+
+	// Filtrar por evolución o no
+	const resultados = await Promise.all(
+		pokemones.map(async (poke) => {
+			try {
+				const speciesResponse = await fetch(poke.species.url)
+				if (!speciesResponse.ok) {
+					throw new Error('Error al obtener la especie del Pokémon')
+				}
+
+				const speciesData = await speciesResponse.json()
+				const evolutionChainUrl = speciesData.evolution_chain.url
+
+				const evolutionResponse = await fetch(evolutionChainUrl)
+				if (!evolutionResponse.ok) {
+					throw new Error('Error al obtener la cadena de evolución del Pokémon')
+				}
+
+				const evolutionData = await evolutionResponse.json()
+
+				const tieneEvolucion = evolutionData.chain.evolves_to.length > 0
+				if (evoluciones === 'Con Evolución') {
+					return tieneEvolucion ? poke : null
+				} else if (evoluciones === 'Sin Evolución') {
+					return !tieneEvolucion ? poke : null
+				}
+			} catch (error) {
+				console.error('Error al obtener evoluciones:', error)
+				return null
+			}
+		})
+	)
+
+	return resultados.filter(Boolean) // Eliminar valores nulos
+}
+
 export const useFetchFiltradosPokemones = () => {
 	const [pokemones, setPokemones] = useState([])
 	const [totalPokemones, setTotalPokemones] = useState(0)
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState(null)
 
-	const { filtroTipo, searchTerm, habilidad, rangoAtaque, rangoDefensa, rangoVelocidad, generacion } = useConfig()
+	const { filtroTipo, searchTerm, habilidad, rangoAtaque, rangoDefensa, rangoVelocidad, rangoPeso, rangoAltura, generacion, color, evoluciones } = useConfig()
 
 	// Debounce del término de búsqueda
 	const debouncedSearchTerm = useDebounce(searchTerm, DELAY_BUSQUEDA)
@@ -119,15 +191,26 @@ export const useFetchFiltradosPokemones = () => {
 			// Filtrar por generación
 			let pokemonesFiltrados = filtrarPorGeneracion(detallesPokemones, generacion)
 
-			// Filtrado por habilidad
+			// Filtrar por tipo
+			if (filtroTipo && filtroTipo !== 'Todos') {
+				pokemonesFiltrados = filtrarPorTipo(pokemonesFiltrados, filtroTipo)
+			}
+
+			// Filtrar por habilidad
 			if (habilidad) {
 				pokemonesFiltrados = pokemonesFiltrados.filter(
 					(poke) => Array.isArray(poke.abilities) && poke.abilities.some((ability) => ability.ability.name === habilidad)
 				)
 			}
 
-			// Filtrado por estadísticas
-			pokemonesFiltrados = filtrarPorEstadisticas(pokemonesFiltrados, rangoAtaque, rangoDefensa, rangoVelocidad)
+			// Filtrar por estadísticas
+			pokemonesFiltrados = filtrarPorEstadisticas(pokemonesFiltrados, rangoAtaque, rangoDefensa, rangoVelocidad, rangoPeso, rangoAltura)
+
+			// Filtrar por color
+			pokemonesFiltrados = await filtrarPorColor(pokemonesFiltrados, color)
+
+			// Filtrar por evoluciones
+			pokemonesFiltrados = await filtrarPorEvoluciones(pokemonesFiltrados, evoluciones)
 
 			// Actualizar los estados
 			setTotalPokemones(pokemonesFiltrados.length)
@@ -138,7 +221,7 @@ export const useFetchFiltradosPokemones = () => {
 		} finally {
 			setLoading(false)
 		}
-	}, [filtroTipo, debouncedSearchTerm, habilidad, rangoAtaque, rangoDefensa, rangoVelocidad, generacion])
+	}, [filtroTipo, debouncedSearchTerm, habilidad, rangoAtaque, rangoDefensa, rangoVelocidad, rangoPeso, rangoAltura, generacion, color, evoluciones])
 
 	useEffect(() => {
 		controladorService()

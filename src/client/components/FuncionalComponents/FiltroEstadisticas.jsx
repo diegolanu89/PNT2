@@ -2,7 +2,8 @@ import { Slider, Box, Typography } from '@mui/material'
 import { useConfig } from '../../contexts/Config.Context'
 
 export const FiltroEstadisticas = () => {
-	const { setRangoAtaque, setRangoDefensa, setRangoVelocidad, rangoAtaque, rangoDefensa, rangoVelocidad } = useConfig()
+	const { setRangoAtaque, setRangoDefensa, setRangoVelocidad, rangoAtaque } = useConfig()
+	const { rangoDefensa, rangoVelocidad, rangoPeso, rangoAltura, setRangoPeso, setRangoAltura } = useConfig()
 
 	return (
 		<Box sx={{ padding: '16px', color: 'white' }}>
@@ -19,6 +20,15 @@ export const FiltroEstadisticas = () => {
 					Velocidad de {rangoVelocidad[0]} a {rangoVelocidad[1]}
 				</Typography>
 				<Slider value={rangoVelocidad} onChange={(e, newValue) => setRangoVelocidad(newValue)} valueLabelDisplay="auto" min={0} max={250} step={1} />
+
+				<Typography gutterBottom>
+					Peso de {rangoPeso[0]} a {rangoPeso[1]}
+				</Typography>
+				<Slider value={rangoPeso} onChange={(e, newValue) => setRangoPeso(newValue)} valueLabelDisplay="auto" min={0} max={1000} step={1} />
+				<Typography gutterBottom>
+					Altura de {rangoAltura[0]} a {rangoAltura[1]}
+				</Typography>
+				<Slider value={rangoAltura} onChange={(e, newValue) => setRangoAltura(newValue)} valueLabelDisplay="auto" min={1} max={20} step={1} />
 			</>
 		</Box>
 	)

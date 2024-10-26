@@ -2,7 +2,7 @@ import { Button } from '@mui/material'
 import { useConfig } from '../../contexts/Config.Context'
 import ClearAllIcon from '@mui/icons-material/ClearAll'
 const FiltroBoton = () => {
-	const { filtroTipo, habilidad, searchTerm, limpiarFiltros, rangoAtaque, rangoVelocidad, rangoDefensa } = useConfig() // Obtener los filtros y la función de limpiar
+	const { filtroTipo, habilidad, searchTerm, limpiarFiltros, rangoAtaque, rangoVelocidad, rangoDefensa, generacion } = useConfig() // Obtener los filtros y la función de limpiar
 
 	// Verificar si hay algún filtro aplicado
 	const hayFiltrosAplicados =
@@ -14,7 +14,8 @@ const FiltroBoton = () => {
 		rangoDefensa[0] !== 0 ||
 		rangoDefensa[1] !== 250 ||
 		rangoVelocidad[0] !== 0 ||
-		rangoVelocidad[1] !== 250
+		rangoVelocidad[1] !== 250 ||
+		generacion !== ''
 
 	return (
 		<>
