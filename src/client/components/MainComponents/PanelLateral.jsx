@@ -16,18 +16,20 @@ import { useConfig } from '../../contexts/Config.Context'
 import SelectorColor from '../FuncionalComponents/SelectorColor'
 import SelectorEvoluciones from '../FuncionalComponents/SelectorEvoluciones'
 
-// Estilos del modal
+// Estilos del modal para permitir scroll desde abajo hacia arriba
 const modalStyle = {
 	position: 'absolute',
-	top: '50%',
+	bottom: 0, // Empieza desde la parte inferior
 	left: '50%',
-	transform: 'translate(-50%, -50%)',
-	width: '85%',
+	transform: 'translateX(-50%)', // Centrado horizontal
+	width: '100%', // Ocupa todo el ancho de la pantalla en mobile
+	maxHeight: '90vh', // Para que no ocupe el 100% y permita ver algo fuera del modal
 	bgcolor: 'background.paper',
-	borderRadius: '8px',
+	borderRadius: '8px 8px 0 0', // Redondear solo la parte superior
 	boxShadow: 24,
 	transition: '0.7s',
 	p: 4,
+	overflowY: 'auto', // Permitir scroll vertical cuando el contenido es largo
 }
 
 export const PanelLateral = () => {
@@ -42,12 +44,17 @@ export const PanelLateral = () => {
 		setOpen(!open)
 	}, [initFiltros])
 
+	// Función para manejar el evento de "Enter" en el SearchBar
+	const handleKeyDown = (event) => {
+		if (event.key === 'Enter') {
+			handleClose() // Cierra el modal al presionar "Enter"
+		}
+	}
+
 	return (
 		<>
-			{/* Si es móvil, muestra el botón flotante y el modal */}
 			{isMobile ? (
 				<>
-					{/* Botón flotante que abre el modal */}
 					<Fab
 						color="primary"
 						aria-label="open"
@@ -61,10 +68,8 @@ export const PanelLateral = () => {
 						<SearchIcon />
 					</Fab>
 
-					{/* Modal que se abre en dispositivos móviles */}
 					<Modal open={open} onClose={handleClose} aria-labelledby="modal-panel-lateral" aria-describedby="modal-panel-lateral-description">
 						<Box sx={modalStyle}>
-							{/* Contenido del panel lateral dentro del modal */}
 							<Box
 								sx={{
 									width: '100%',
@@ -72,7 +77,8 @@ export const PanelLateral = () => {
 									flexDirection: 'column',
 								}}
 							>
-								<SearchBar />
+								{/* Agrega la función onKeyDown para escuchar el Enter */}
+								<SearchBar onKeyDown={handleKeyDown} />
 								<SelectorTipo />
 								<SelectorHabilidad />
 								<SelectorGeneracion />
@@ -80,13 +86,7 @@ export const PanelLateral = () => {
 								<SelectorEvoluciones />
 								<FiltroEstadisticas />
 								<FiltroBoton />
-								{/* Botón de "Ir" para cerrar el modal */}
-								<Button
-									variant="contained"
-									color="primary"
-									onClick={handleClose} // Cerrar el modal al hacer clic en "Ir"
-									sx={{ mt: 2 }}
-								>
+								<Button variant="contained" color="primary" onClick={handleClose} sx={{ mt: 2 }}>
 									Ir
 								</Button>
 							</Box>
@@ -94,7 +94,6 @@ export const PanelLateral = () => {
 					</Modal>
 				</>
 			) : (
-				// Si no es móvil, muestra el panel lateral directamente
 				<Box
 					sx={{
 						width: '300px',
@@ -104,7 +103,6 @@ export const PanelLateral = () => {
 					}}
 				>
 					<SearchBar />
-					{/* Texto "Filtros" entre SearchBar y SelectorTipo */}
 					<Typography variant="subtitle1" sx={{ mt: 2, mb: 1, fontWeight: 'bold' }}>
 						Filtros
 					</Typography>

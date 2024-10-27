@@ -6,15 +6,14 @@ import BotoneraCard from '../CardsComponents/BotoneraCard'
 import { useState } from 'react'
 import { DESIGN } from '../../controller/parameters'
 import { useDeviceType } from '../../hooks/useDeviceMui'
-
+import ChipsFiltros from './../FuncionalComponents/ChipsFiltros'
 export function ContenedorPokemones({ pokemones }) {
 	const { isMobile } = useDeviceType()
 	const [disposicion, setDisposicion] = useState(DESIGN.ROW)
 
 	return (
 		<Box id="contenedorPokemones" sx={{ flexDirection: disposicion, justifyContent: isMobile ? 'center' : 'flex-start' }}>
-			{!isMobile ? <BotoneraCard handler={setDisposicion} /> : null}
-
+			{!isMobile ? <BotoneraCard handler={setDisposicion} /> : <ChipsFiltros />}
 			{pokemones?.map((pokemon, i) => (
 				<Card
 					key={i + 'Card'}

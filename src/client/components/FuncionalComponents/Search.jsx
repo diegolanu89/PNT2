@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import { TextField, InputAdornment } from '@mui/material'
-import SearchIcon from '@mui/icons-material/Search' // Un ícono de búsqueda para el adornment
+import SearchIcon from '@mui/icons-material/Search' // Ícono de búsqueda
 import { useConfig } from '../../contexts/Config.Context'
 
-const SearchBar = () => {
+const SearchBar = ({ handleClose }) => {
 	const { searchTerm, setSearchTerm, aplicarFiltros } = useConfig() // Obtener y actualizar el término de búsqueda
 
 	// Manejador del cambio en la barra de búsqueda
@@ -13,7 +14,8 @@ const SearchBar = () => {
 	// Función para manejar la tecla presionada
 	const handleKeyDown = (event) => {
 		if (event.key === 'Enter') {
-			aplicarFiltros() // Llamar a la función que aplica los filtros
+			aplicarFiltros() // Aplicar los filtros
+			handleClose() // Cerrar el modal
 		}
 	}
 

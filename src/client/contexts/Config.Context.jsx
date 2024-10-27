@@ -27,8 +27,8 @@ export const ConfigProvider = ({ children }) => {
 	const [rangoAtaque, setRangoAtaque] = useState([0, 250])
 	const [rangoDefensa, setRangoDefensa] = useState([0, 250])
 	const [rangoVelocidad, setRangoVelocidad] = useState([0, 250])
-	const [rangoPeso, setRangoPeso] = useState([1, 1000])
-	const [rangoAltura, setRangoAltura] = useState([1, 20])
+	const [rangoPeso, setRangoPeso] = useState([0, 1000])
+	const [rangoAltura, setRangoAltura] = useState([0, 20])
 
 	const setFavoritos = (e) => {
 		let fav = favoritos
@@ -49,7 +49,29 @@ export const ConfigProvider = ({ children }) => {
 		setRangoAtaque([0, 250])
 		setRangoDefensa([0, 250])
 		setRangoVelocidad([0, 250])
+		setRangoPeso([0, 1000])
+		setRangoAltura([0, 20])
 		setGeneracion('')
+		setColor('Todos')
+		setEvoluciones('Todos')
+	}
+
+	const limpiarFiltrosPorKey = (key) => {
+		const limpieza = {
+			['tipo']: () => setFiltroTipo(''),
+			['termino']: () => setSearchTerm(''),
+			['habilidad']: () => setHabilidad(''),
+			['ataque']: () => setRangoAtaque([0, 250]),
+			['defensa']: () => setRangoDefensa([0, 250]),
+			['velocidad']: () => setRangoVelocidad([0, 250]),
+			['peso']: () => setRangoPeso([0, 1000]),
+			['altura']: () => setRangoAltura([0, 20]),
+			['generacion']: () => setGeneracion(''),
+			['color']: () => setColor('Todos'),
+			['evolucion']: () => setEvoluciones('Todos'),
+		}
+
+		return limpieza[key]()
 	}
 
 	return (
@@ -84,6 +106,7 @@ export const ConfigProvider = ({ children }) => {
 				setRangoAltura,
 				evoluciones,
 				setEvoluciones,
+				limpiarFiltrosPorKey,
 			}}
 		>
 			{children}

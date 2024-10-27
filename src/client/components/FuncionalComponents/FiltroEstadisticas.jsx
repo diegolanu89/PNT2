@@ -28,7 +28,7 @@ export const FiltroEstadisticas = () => {
 				<Typography gutterBottom>
 					Altura de {rangoAltura[0]} a {rangoAltura[1]}
 				</Typography>
-				<Slider value={rangoAltura} onChange={(e, newValue) => setRangoAltura(newValue)} valueLabelDisplay="auto" min={1} max={20} step={1} />
+				<Slider value={rangoAltura} onChange={(e, newValue) => setRangoAltura(newValue)} valueLabelDisplay="auto" min={0} max={20} step={1} />
 			</>
 		</Box>
 	)

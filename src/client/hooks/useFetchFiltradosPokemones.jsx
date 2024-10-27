@@ -7,10 +7,14 @@ const ERROR_DE_DISPOSICION_DE_DATOS = 'Error en la solicitud de datos:'
 const ERROR_AL_OBTENER_DETALLES = 'Error al obtener detalles del Pokémon:'
 const ERROR_SOLICITUD = 'Error en la solicitud principal de Pokémon.'
 const ERROR_DETALLES = 'Error al obtener detalles para '
+const ERROR_ESPECIE = 'Error al obtener la especie del Pokémon'
 const ERROR_FINAL = 'Ocurrió un error al obtener los Pokémon. Intenta nuevamente más tarde.'
+const ERROR_EVO = 'Error al obtener la cadena de evolución del Pokémon'
+const ERROR_EVO_RESULT = 'Error al obtener evoluciones:'
+const ERROR_COLOR = 'Error al obtener Pokémon por color'
 
 const CACHE_TTL = 60000 * 60 // Tiempo de vida de la caché en milisegundos
-const pokemonCache = {}
+const pokemonCache = {} //Objeto para alojar cache
 
 // Definir los rangos de ID para cada generación
 const GENERATION_RANGES = {
@@ -80,7 +84,7 @@ const filtrarPorColor = async (pokemones, color) => {
 	try {
 		const response = await fetch(`https://pokeapi.co/api/v2/pokemon-color/${color}`)
 		if (!response.ok) {
-			throw new Error('Error al obtener Pokémon por color')
+			throw new Error(ERROR_COLOR)
 		}
 		const data = await response.json()
 
@@ -89,7 +93,7 @@ const filtrarPorColor = async (pokemones, color) => {
 		// Filtrar los Pokémon por el color seleccionado
 		return pokemones.filter((poke) => pokemonNamesByColor.includes(poke.name))
 	} catch (error) {
-		console.error('Error al obtener Pokémon por color:', error)
+		console.error(ERROR_COLOR + ':', error)
 		return pokemones // Si ocurre un error, no aplicar el filtro de color
 	}
 }
@@ -104,7 +108,7 @@ const filtrarPorEvoluciones = async (pokemones, evoluciones) => {
 			try {
 				const speciesResponse = await fetch(poke.species.url)
 				if (!speciesResponse.ok) {
-					throw new Error('Error al obtener la especie del Pokémon')
+					throw new Error(ERROR_ESPECIE)
 				}
 
 				const speciesData = await speciesResponse.json()
@@ -112,7 +116,7 @@ const filtrarPorEvoluciones = async (pokemones, evoluciones) => {
 
 				const evolutionResponse = await fetch(evolutionChainUrl)
 				if (!evolutionResponse.ok) {
-					throw new Error('Error al obtener la cadena de evolución del Pokémon')
+					throw new Error(ERROR_EVO)
 				}
 
 				const evolutionData = await evolutionResponse.json()
@@ -124,7 +128,7 @@ const filtrarPorEvoluciones = async (pokemones, evoluciones) => {
 					return !tieneEvolucion ? poke : null
 				}
 			} catch (error) {
-				console.error('Error al obtener evoluciones:', error)
+				console.error(ERROR_EVO_RESULT, error)
 				return null
 			}
 		})

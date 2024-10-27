@@ -36,3 +36,33 @@ export const fetchHabilidadesEnEspañol = async (id) => {
 		console.error('Error al obtener la habilidad:', error)
 	}
 }
+
+export const traducirColor = (color) => {
+	const traducciones = {
+		red: 'Rojo',
+		blue: 'Azul',
+		green: 'Verde',
+		yellow: 'Amarillo',
+		black: 'Negro',
+		white: 'Blanco',
+		brown: 'Marrón',
+		purple: 'Morado',
+		pink: 'Rosa',
+		gray: 'Gris',
+	}
+
+	return traducciones[color] || color
+}
+
+export const traducirEstadistica = (statName) => {
+	const traducciones = {
+		hp: 'Puntos de salud',
+		attack: 'Ataque',
+		defense: 'Defensa',
+		['special-attack']: 'Ataque especial',
+		['special-defense']: 'Defensa especial',
+		speed: 'Velocidad',
+	}
+
+	return traducciones[statName] || statName
+}

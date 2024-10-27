@@ -5,6 +5,7 @@ import ToggleButton from '@mui/material/ToggleButton'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 import PropTypes from 'prop-types'
 import { DESIGN } from '../../controller/parameters'
+import ChipsFiltros from './../FuncionalComponents/ChipsFiltros'
 export default function BotoneraCard({ handler }) {
 	const [view, setView] = useState(DESIGN.LIST)
 
@@ -21,6 +22,7 @@ export default function BotoneraCard({ handler }) {
 			<ToggleButton value="row" aria-label="row">
 				<ViewModuleIcon />
 			</ToggleButton>
+			<ChipsFiltros />
 		</ToggleButtonGroup>
 	)
 }
