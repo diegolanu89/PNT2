@@ -78,14 +78,14 @@ export const PanelLateral = () => {
 								}}
 							>
 								{/* Agrega la función onKeyDown para escuchar el Enter */}
-								<SearchBar onKeyDown={handleKeyDown} />
+								<SearchBar />
 								<SelectorTipo />
 								<SelectorHabilidad />
 								<SelectorGeneracion />
 								<SelectorColor />
 								<SelectorEvoluciones />
 								<FiltroEstadisticas />
-								<FiltroBoton />
+								<FiltroBoton onKeyDown={handleKeyDown} />
 								<Button variant="contained" color="primary" onClick={handleClose} sx={{ mt: 2 }}>
 									Ir
 								</Button>
@@ -112,7 +112,7 @@ export const PanelLateral = () => {
 					<SelectorColor />
 					<SelectorEvoluciones />
 					<FiltroEstadisticas />
-					<FiltroBoton />
+					<FiltroBoton onKeyDown={handleKeyDown} />
 				</Box>
 			)}
 		</>

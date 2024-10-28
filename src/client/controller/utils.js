@@ -66,3 +66,68 @@ export const traducirEstadistica = (statName) => {
 
 	return traducciones[statName] || statName
 }
+
+// Función para traducir tipos al español
+export const traducirTipo = async (tipoUrl) => {
+	const response = await fetch(tipoUrl)
+	const data = await response.json()
+	const nombreEnEspanol = data.names.find((name) => name.language.name === 'es').name
+	return nombreEnEspanol
+}
+
+// Función para traducir habilidades al español
+export const traducirHabilidad = async (habilidadUrl) => {
+	const response = await fetch(habilidadUrl)
+	const data = await response.json()
+	const nombreEnEspanol = data.names.find((name) => name.language.name === 'es').name
+	return nombreEnEspanol
+}
+
+// Función para traducir el hábitat al español
+export const traducirHabitat = (habitat) => {
+	switch (habitat) {
+		case 'cave':
+			return 'Cueva'
+		case 'forest':
+			return 'Bosque'
+		case 'grassland':
+			return 'Pradera'
+		case 'mountain':
+			return 'Montaña'
+		case 'rare':
+			return 'Raro'
+		case 'rough-terrain':
+			return 'Terreno escabroso'
+		case 'sea':
+			return 'Mar'
+		case 'urban':
+			return 'Urbano'
+		case 'waters-edge':
+			return 'Orilla de agua'
+		default:
+			return 'Desconocido'
+	}
+}
+
+export const isColorClaro = (colorName) => {
+	// Crear un elemento temporal para obtener el color computado
+	const tempElement = document.createElement('div')
+	tempElement.style.color = colorName
+	document.body.appendChild(tempElement)
+
+	// Obtener el color en formato RGB
+	const color = window.getComputedStyle(tempElement).color
+	document.body.removeChild(tempElement)
+
+	// Convertir el color RGB a valores numéricos
+	const rgb = color.match(/\d+/g)
+	const r = parseInt(rgb[0])
+	const g = parseInt(rgb[1])
+	const b = parseInt(rgb[2])
+
+	// Calcular la luminosidad
+	const luminosidad = (0.299 * r + 0.587 * g + 0.114 * b) / 255
+
+	// Si la luminosidad es alta, el color es claro
+	return luminosidad > 0.5
+}

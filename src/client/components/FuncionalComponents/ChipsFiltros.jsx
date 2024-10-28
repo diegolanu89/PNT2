@@ -48,6 +48,7 @@ const ChipsFiltros = () => {
 				gap: 1,
 				mt: 2,
 				mb: 1,
+				ml: 2,
 			}}
 		>
 			{/* Mostrar Chip de Tipo */}

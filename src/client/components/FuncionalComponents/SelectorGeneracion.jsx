@@ -21,7 +21,6 @@ const SelectorGeneracion = () => {
 				<MenuItem value={'7'}>Generación 7</MenuItem>
 				<MenuItem value={'8'}>Generación 8</MenuItem>
 				<MenuItem value={'9'}>Generación 9</MenuItem>
-				<MenuItem value={'10'}>Generación 10</MenuItem>
 			</Select>
 		</FormControl>
 	)

@@ -26,6 +26,7 @@ const GENERATION_RANGES = {
 	6: [650, 721],
 	7: [722, 809],
 	8: [810, 898],
+	9: [899, 1000],
 }
 
 // Verificar si el cache cumple con el tiempo de vida establecido

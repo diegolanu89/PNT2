@@ -21,7 +21,6 @@ export const PokemonCard = ({ pokemon }) => {
 	const { isMobile } = useDeviceType()
 	const { width } = useWindowDimensions()
 	const { setFavoritos } = useConfig()
-
 	const [open, setOpen] = useState(false) // Estado para manejar el modal
 
 	const handleOpen = () => setOpen(true) // Abre el modal
@@ -93,12 +92,12 @@ export const PokemonCard = ({ pokemon }) => {
 						width: isMobile ? '90%' : '50%',
 						bgcolor: 'background.paper',
 						boxShadow: 24,
-						padding: '16px',
+						padding: '8px',
 						backgroundColor: typeColorsDarkMode[pokemon.types[0].type.name],
 						borderRadius: '5px',
 					}}
 				>
-					<PokemonDetalles pokemon={pokemon} />
+					<PokemonDetalles pokemon={pokemon} cerrar={setOpen} />
 				</Box>
 			</Modal>
 		</>

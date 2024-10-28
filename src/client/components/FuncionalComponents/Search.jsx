@@ -3,7 +3,7 @@ import { TextField, InputAdornment } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search' // Ícono de búsqueda
 import { useConfig } from '../../contexts/Config.Context'
 
-const SearchBar = ({ handleClose }) => {
+const SearchBar = () => {
 	const { searchTerm, setSearchTerm, aplicarFiltros } = useConfig() // Obtener y actualizar el término de búsqueda
 
 	// Manejador del cambio en la barra de búsqueda
@@ -15,7 +15,6 @@ const SearchBar = ({ handleClose }) => {
 	const handleKeyDown = (event) => {
 		if (event.key === 'Enter') {
 			aplicarFiltros() // Aplicar los filtros
-			handleClose() // Cerrar el modal
 		}
 	}
 
