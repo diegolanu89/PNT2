@@ -8,7 +8,7 @@
 		"build": "vite build",
 		"lint": "eslint .",
 		"preview": "vite preview",
-		"sass_client": "sass --watch src/scss/mainClient.scss src/css/AppClient.css"
+		"sass_client": "sass --watch src/scss/mainClient.scss src/css/appClient.css"
 	},
 	"dependencies": {
 		"@emotion/react": "^11.13.3",

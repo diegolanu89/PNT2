@@ -39,19 +39,6 @@ export const PokemonCard = ({ pokemon }) => {
 						}}
 					>
 						<CardContent>
-							<div id="favorito">
-								<IconButton
-									size="large"
-									edge="start"
-									color="inherit"
-									aria-label="menu"
-									sx={{ mr: 2, justifyContent: 'flex-end' }}
-									onClick={() => setFavoritos(pokemon)}
-								>
-									<FavoriteIcon />
-								</IconButton>
-							</div>
-
 							<Typography variant="h4" gutterBottom sx={{ color: typeTextColors[pokemon.types[0].type.name] }}>
 								{pokemon.id}
 							</Typography>
